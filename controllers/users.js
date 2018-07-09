@@ -51,7 +51,7 @@ async function post(req, res, next) {
 module.exports.post = post;
 async function put(req, res, next) {
   try {
-    let employee = getUserFromRec(req);
+    let user = getUserFromRec(req);
  
     user.id = parseInt(req.params.id, 10);
  

@@ -23,48 +23,42 @@ async function get(req, res, next) {
 }
  
 module.exports.get = get;
-
 function getUserFromRec(req) {
   const user = {
-    id: req.body.first_name,
-    iname: req.body.last_name,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     email: req.body.email,
-    phone_number: req.body.phone_number,
-    hire_date: req.body.hire_date,
-    job_id: req.body.job_id,
-    salary: req.body.salary,
-    commission_pct: req.body.commission_pct,
-    manager_id: req.body.manager_id,
-    department_id: req.body.department_id
+    username: req.body.username,
+    password: req.body.password,
+   id: req.body.id
   };
  
-  return employee;
+  return user;
 }
  
 async function post(req, res, next) {
   try {
-    let employee = getEmployeeFromRec(req);
+    let user = getUserFromRec(req);
  
-    employee = await employees.create(employee);
+    user = await users.create(user);
  
-    res.status(201).json(employee);
+    res.status(201).json(user);
   } catch (err) {
     next(err);
   }
 }
  
 module.exports.post = post;
-
 async function put(req, res, next) {
   try {
-    let employee = getEmployeeFromRec(req);
+    let employee = getUserFromRec(req);
  
-    employee.employee_id = parseInt(req.params.id, 10);
+    user.id = parseInt(req.params.id, 10);
  
-    employee = await employees.update(employee);
+    user = await users.update(user);
  
-    if (employee !== null) {
-      res.status(200).json(employee);
+    if (user !== null) {
+      res.status(200).json(user);
     } else {
       res.status(404).end();
     }
@@ -78,7 +72,7 @@ async function del(req, res, next) {
   try {
     const id = parseInt(req.params.id, 10);
  
-    const success = await employees.delete(id);
+    const success = await users.delete(id);
  
     if (success) {
       res.status(204).end();

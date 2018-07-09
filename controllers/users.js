@@ -29,8 +29,7 @@ function getUserFromRec(req) {
     lastname: req.body.lastname,
     email: req.body.email,
     username: req.body.username,
-    password: req.body.password,
-   id: req.body.id
+    password: req.body.password
   };
  
   return user;
@@ -39,7 +38,7 @@ function getUserFromRec(req) {
 async function post(req, res, next) {
   try {
     let user = getUserFromRec(req);
- 
+ console.log(user);
     user = await users.create(user);
  
     res.status(201).json(user);

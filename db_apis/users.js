@@ -8,7 +8,7 @@ const baseQuery =
     email "email",
     password "password",
     username "username"
-  from users`;
+  from list_user`;
  
 async function find(context) {
   let query = baseQuery;
@@ -28,7 +28,7 @@ async function find(context) {
 module.exports.find = find;
 
 const createSql =
- `insert into users (
+ `insert into list_user (
     firstname,
     lastname,
     email,
@@ -60,7 +60,7 @@ async function create(usr) {
  
 module.exports.create = create;
 const updateSql =
- `update users
+ `update list_user
   set firstname = :firstname,
     lastname = :lastname,
     email = :email,
@@ -82,7 +82,7 @@ module.exports.update = update;
 const deleteSql =
  `begin
  
-    delete from users
+    delete from list_user
     where id = :id;
  
  
